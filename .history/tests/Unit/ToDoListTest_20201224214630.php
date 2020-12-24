@@ -9,6 +9,8 @@ use App\Models\User;
 use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 
+use function PHPUnit\Framework\assertEquals;
+use function PHPUnit\Framework\assertFalse;
 use function PHPUnit\Framework\assertTrue;
 
 class ToDoListTest extends TestCase
@@ -43,6 +45,10 @@ class ToDoListTest extends TestCase
     }
 
 
+    $this->todolist = $this->getMockBuilder(User::class)
+    ->onlyMethods(['isValid'])
+    ->getMock();
+
     public function testAddItemAfter30Minutes()
     {
         $this->todolist->expects($this->any())->method('getNumberOfItemsOfUser')->willReturn(1);
@@ -65,6 +71,6 @@ class ToDoListTest extends TestCase
         $this->expectException('Exception');
         $this->expectExceptionMessage('You have too many items !!');
 
-        assertTrue($this->todolist->add($this->item));
+        assertFalse($this->todolist->add($this->item));
     }
 }

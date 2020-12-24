@@ -9,6 +9,8 @@ use App\Models\User;
 use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 
+use function PHPUnit\Framework\assertEquals;
+use function PHPUnit\Framework\assertFalse;
 use function PHPUnit\Framework\assertTrue;
 
 class ToDoListTest extends TestCase
@@ -51,20 +53,20 @@ class ToDoListTest extends TestCase
     }
 
 
-    public function testAddItemAt8thItemToSendEmailToUser()
-    {
-        $this->todolist->expects($this->any())->method('getNumberOfItemsOfUser')->willReturn(8);
+    // public function testAddItemAt8thItemToSendEmailToUser()
+    // {
+    //     $this->todolist->expects($this->any())->method('getNumberOfItemsOfUser')->willReturn(8);
 
-        assertTrue($this->todolist->add($this->item));
-    }
+    //     assertTrue($this->todolist->add($this->item));
+    // }
 
-    public function testAddItemMore10Items()
-    {
+    // public function testAddItemMore10Items()
+    // {
 
-        $this->todolist->expects($this->any())->method('getNumberOfItemsOfUser')->willReturn(10);
-        $this->expectException('Exception');
-        $this->expectExceptionMessage('You have too many items !!');
+    //     $this->todolist->expects($this->any())->method('getNumberOfItemsOfUser')->willReturn(10);
+    //     $this->expectException('Exception');
+    //     $this->expectExceptionMessage('You have too many items !!');
 
-        assertTrue($this->todolist->add($this->item));
-    }
+    //     assertFalse($this->todolist->add($this->item));
+    // }
 }
