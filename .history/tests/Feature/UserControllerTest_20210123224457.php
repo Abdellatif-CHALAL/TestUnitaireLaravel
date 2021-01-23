@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use Carbon\Carbon;
 use Tests\TestCase;
 
@@ -12,14 +13,15 @@ class UserControllerTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->user = [
-            'first_name' => $this->faker->name,
-            'last_name' => $this->faker->name,
-            "date_naissance" => Carbon::now()->subYears(13)->toDateString(),
-            'email' => $this->faker->unique()->safeEmail,
-            'password' => 'password',
-
-        ];
+        // $this->user = [
+        //     "first_name" => "abdellatif",
+        //     "last_name" => "chalal",
+        //     "date_naissance" => Carbon::now()->subYears(13)->toDateString(),
+        //     "email" => "chalal@gmail.com",
+        //     "password" => "abdellatichalal",
+        // ];
+        $this->user = User::factory()->make();
+        var_dump($user)
     }
     public function test_can_create_user()
     {
@@ -31,16 +33,13 @@ class UserControllerTest extends TestCase
     public function test_create_user_with_email_already_exist()
     {
         $this->post(route('users.store'), $this->user)
-            ->assertStatus(201)
-            ->assertJson($this->user);
-
-        $this->post(route('users.store'), $this->user)
             ->assertStatus(409)
             ->assertJson(["message" => "Email already exists"]);
     }
 
     public function test_create_user_with_empty_first_name()
     {
+        $this->user['email'] = "email@gmail.com";
         $this->user['first_name'] = "";
         $this->post(route('users.store'), $this->user)
             ->assertStatus(400)
@@ -49,6 +48,7 @@ class UserControllerTest extends TestCase
 
     public function test_create_user_with_empty_last_name()
     {
+        $this->user['email'] = "email@gmail.com";
         $this->user['last_name'] = "";
         $this->post(route('users.store'), $this->user)
             ->assertStatus(400)
@@ -73,6 +73,7 @@ class UserControllerTest extends TestCase
 
     public function test_create_user_with_invalid_password()
     {
+        $this->user['email'] = "email@gmail.com";
         $this->user['password'] = "";
         $this->post(route('users.store'), $this->user)
             ->assertStatus(400)
@@ -81,6 +82,7 @@ class UserControllerTest extends TestCase
 
     public function test_create_user_with_invalid_birthday()
     {
+        $this->user['email'] = "email@gmail.com";
         $this->user['date_naissance'] = Carbon::now()->subYears(12)->toDateString();
         $this->post(route('users.store'), $this->user)
             ->assertStatus(400)

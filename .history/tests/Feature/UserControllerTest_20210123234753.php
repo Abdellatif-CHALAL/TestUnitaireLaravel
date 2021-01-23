@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use Carbon\Carbon;
 use Tests\TestCase;
 

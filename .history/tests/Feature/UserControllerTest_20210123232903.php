@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use Carbon\Carbon;
 use Tests\TestCase;
 
@@ -20,6 +21,8 @@ class UserControllerTest extends TestCase
             'password' => 'password',
 
         ];
+        // $this->user = User::factory()->make();
+        // $this->user->email = "chalal@gmail.com";
     }
     public function test_can_create_user()
     {

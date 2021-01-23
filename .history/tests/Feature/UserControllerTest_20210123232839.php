@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use Carbon\Carbon;
 use Tests\TestCase;
 
@@ -20,6 +21,8 @@ class UserControllerTest extends TestCase
             'password' => 'password',
 
         ];
+        // $this->user = User::factory()->make();
+        // $this->user->email = "chalal@gmail.com";
     }
     public function test_can_create_user()
     {
@@ -73,17 +76,19 @@ class UserControllerTest extends TestCase
 
     public function test_create_user_with_invalid_password()
     {
+        $this->user['email'] = "email@gmail.com";
         $this->user['password'] = "";
         $this->post(route('users.store'), $this->user)
             ->assertStatus(400)
             ->assertJson(["message" => "Password must between 8 and 40 caracters"]);
     }
 
-    public function test_create_user_with_invalid_birthday()
-    {
-        $this->user['date_naissance'] = Carbon::now()->subYears(12)->toDateString();
-        $this->post(route('users.store'), $this->user)
-            ->assertStatus(400)
-            ->assertJson(["message" => "You must have 13 years or more"]);
-    }
+    // public function test_create_user_with_invalid_birthday()
+    // {
+    //     $this->user['email'] = "email@gmail.com";
+    //     $this->user['date_naissance'] = Carbon::now()->subYears(12)->toDateString();
+    //     $this->post(route('users.store'), $this->user)
+    //         ->assertStatus(400)
+    //         ->assertJson(["message" => "You must have 13 years or more"]);
+    // }
 }

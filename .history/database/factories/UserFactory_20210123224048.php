@@ -23,10 +23,10 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'first_name' => $this->faker->name,
-            'last_name' => $this->faker->name,
+            'first_name' => $faker->name,
+            'last_name' => $faker->name,
             "date_naissance" => Carbon::now()->subYears(13)->toDateString(),
-            'email' => $this->faker->unique()->safeEmail,
+            'email' => $faker->unique()->safeEmail,
             'password' => 'password',
 
         ];

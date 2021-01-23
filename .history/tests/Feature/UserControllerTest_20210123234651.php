@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use Carbon\Carbon;
 use Tests\TestCase;
 
@@ -12,20 +13,21 @@ class UserControllerTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->user = [
-            'first_name' => $this->faker->name,
-            'last_name' => $this->faker->name,
-            "date_naissance" => Carbon::now()->subYears(13)->toDateString(),
-            'email' => $this->faker->unique()->safeEmail,
-            'password' => 'password',
+        // $this->user = [
+        //     'first_name' => $this->faker->name,
+        //     'last_name' => $this->faker->name,
+        //     "date_naissance" => Carbon::now()->subYears(13)->toDateString(),
+        //     'email' => $this->faker->unique()->safeEmail,
+        //     'password' => 'password',
 
-        ];
+        // ];
+        $this->user = User::factory()->make();
     }
     public function test_can_create_user()
     {
-        $this->post(route('users.store'), $this->user)
+        $this->post(route('users.store'), [$this->user])
             ->assertStatus(201)
-            ->assertJson($this->user);
+            ->assertJson([$this->user]);
     }
 
     public function test_create_user_with_email_already_exist()
