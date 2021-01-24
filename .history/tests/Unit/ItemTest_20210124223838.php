@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Models\User;
+use App\Models\Item;
 use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 

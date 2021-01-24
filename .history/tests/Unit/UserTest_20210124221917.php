@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase
@@ -62,17 +63,9 @@ class UserTest extends TestCase
 
     public function test_with_birthday_before_13_years_user()
     {
-        $this->user->date_naissance = Carbon::now()->subYears(12)->toDateString();
+        $this->user->date_naissance = "@ggmail.com";
         $this->expectException('Exception');
-        $this->expectExceptionMessage('You must have 13 years or more');
-        $this->assertTrue($this->user->isValid());
-    }
-
-    public function test_with_invalid_password_user()
-    {
-        $this->user->password = "pwd";
-        $this->expectException('Exception');
-        $this->expectExceptionMessage('Password must between 8 and 40 caracters');
+        $this->expectExceptionMessage('Email is not valide');
         $this->assertTrue($this->user->isValid());
     }
 }

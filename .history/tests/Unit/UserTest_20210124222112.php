@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase
@@ -68,7 +69,7 @@ class UserTest extends TestCase
         $this->assertTrue($this->user->isValid());
     }
 
-    public function test_with_invalid_password_user()
+    public function test_with_password_user()
     {
         $this->user->password = "pwd";
         $this->expectException('Exception');

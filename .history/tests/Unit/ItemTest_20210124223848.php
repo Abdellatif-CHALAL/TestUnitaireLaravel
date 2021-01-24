@@ -2,13 +2,13 @@
 
 namespace Tests\Unit;
 
-use App\Models\User;
+use App\Models\Item;
 use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase
 {
-    private User $user;
+    private Item $item;
     public function setUp(): void
     {
         parent::setUp();

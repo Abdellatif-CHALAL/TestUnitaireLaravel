@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase

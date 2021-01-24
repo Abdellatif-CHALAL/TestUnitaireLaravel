@@ -2,17 +2,17 @@
 
 namespace Tests\Unit;
 
-use App\Models\User;
+use App\Models\Item;
 use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase
 {
-    private User $user;
+    private Item $item;
     public function setUp(): void
     {
         parent::setUp();
-        $this->user = new User([
+        $this->user = new Item([
             'first_name' => "abdellatif",
             'last_name' => "chalal",
             "date_naissance" => Carbon::now()->subYears(13)->toDateString(),

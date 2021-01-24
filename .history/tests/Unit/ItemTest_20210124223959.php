@@ -2,28 +2,25 @@
 
 namespace Tests\Unit;
 
-use App\Models\User;
+use App\Models\Item;
 use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase
 {
-    private User $user;
+    private Item $item;
     public function setUp(): void
     {
         parent::setUp();
-        $this->user = new User([
-            'first_name' => "abdellatif",
-            'last_name' => "chalal",
-            "date_naissance" => Carbon::now()->subYears(13)->toDateString(),
-            'email' => "test@gmail.com",
-            'password' => 'password',
+        $this->item = new Item([
+            'name' => "name of item",
+            'content' => "le contenant de item",
 
         ]);
     }
 
 
-    public function test_normal_user()
+    public function test_normal_item()
     {
         $this->assertTrue($this->user->isValid());
     }
