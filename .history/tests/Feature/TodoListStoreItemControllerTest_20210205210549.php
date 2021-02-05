@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Support\Str;
 use App\Models\Item;
 use App\Models\User;
 use Carbon\Carbon;
@@ -187,6 +186,11 @@ class TodoListStoreItemControllerTest extends TestCase
         ];
         $this->post('/api/todo_lists/' . $user->id . '/item', $item)
             ->assertStatus(422)
-            ->assertJson(["message" => "Content must be less than 1000 characters"]);
+            ->assertJson(["message" => "Name is empty"]);
+
+        $this->item->content =
+            $this->expectException('Exception');
+        $this->expectExceptionMessage('Content must be less than 1000 characters');
+        $this->assertTrue($this->item->isValid());
     }
 }
