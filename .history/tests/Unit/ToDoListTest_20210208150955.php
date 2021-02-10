@@ -137,6 +137,7 @@ class ToDoListTest extends TestCase
 
         $this->expectException('Exception');
         $this->expectExceptionMessage('Name item already exist');
+        $this->item->name = "name";
 
         assertEquals($this->item, $this->todoListservice->add($this->user, $this->item));
     }

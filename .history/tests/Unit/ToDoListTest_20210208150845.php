@@ -129,17 +129,17 @@ class ToDoListTest extends TestCase
     }
 
 
-    public function test_add_Item_with_unique_name()
-    {
-        $this->user->todolist->expects($this->any())->method('getNumberOfItemsOfUser')->willReturn(1);
-        $this->user->todolist->expects($this->any())->method('checkPeriodBetweenTwoItems')->willReturn(true);
-        $this->todoListservice->expects($this->any())->method('checkUniqueItemName')->willReturn(false);
+    // public function test_add_Item_with_unique_name()
+    // {
+    //     $this->user->todolist->expects($this->any())->method('getNumberOfItemsOfUser')->willReturn(1);
+    //     $this->user->todolist->expects($this->any())->method('checkPeriodBetweenTwoItems')->willReturn(true);
+    //     $this->todoListservice->expects($this->any())->method('checkUniqueItemName')->willReturn(false);
 
-        $this->expectException('Exception');
-        $this->expectExceptionMessage('Name item already exist');
+    //     $this->expectException('Exception');
+    //     $this->expectExceptionMessage('Name item already exist');
 
-        assertEquals($this->item, $this->todoListservice->add($this->user, $this->item));
-    }
+    //     assertEquals($this->item, $this->todoListservice->add($this->user, $this->item));
+    // }
 
 
     public function test_add_Item_with_more_1000_caracters_content()

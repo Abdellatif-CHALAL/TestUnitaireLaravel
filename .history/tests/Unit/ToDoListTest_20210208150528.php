@@ -133,10 +133,11 @@ class ToDoListTest extends TestCase
     {
         $this->user->todolist->expects($this->any())->method('getNumberOfItemsOfUser')->willReturn(1);
         $this->user->todolist->expects($this->any())->method('checkPeriodBetweenTwoItems')->willReturn(true);
-        $this->todoListservice->expects($this->any())->method('checkUniqueItemName')->willReturn(false);
+        $this->todoListservice->expects($this->any())->method('checkUniqueItemName')->willReturn(true);
 
+        $this->item->name = "";
         $this->expectException('Exception');
-        $this->expectExceptionMessage('Name item already exist');
+        $this->expectExceptionMessage('Name is empty');
 
         assertEquals($this->item, $this->todoListservice->add($this->user, $this->item));
     }

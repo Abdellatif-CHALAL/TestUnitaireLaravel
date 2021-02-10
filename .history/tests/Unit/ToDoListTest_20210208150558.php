@@ -136,7 +136,7 @@ class ToDoListTest extends TestCase
         $this->todoListservice->expects($this->any())->method('checkUniqueItemName')->willReturn(false);
 
         $this->expectException('Exception');
-        $this->expectExceptionMessage('Name item already exist');
+        $this->expectExceptionMessage('Name is empty');
 
         assertEquals($this->item, $this->todoListservice->add($this->user, $this->item));
     }
